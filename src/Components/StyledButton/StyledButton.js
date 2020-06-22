@@ -19,8 +19,10 @@ const StyledButtonComponent = (props) =>{
 const styles = StyleSheet.create ({
         container:{
             borderRadius:10,
-            backgroundColor:'#ff00ff'
-    
+            backgroundColor:'#ff00ff',
+            display:'flex',
+            alignItems:"center",
+            justifyContent:"center"
         }
         
 

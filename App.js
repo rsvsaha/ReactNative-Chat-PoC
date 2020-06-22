@@ -7,6 +7,9 @@ import LocationSceen from './src/Screens/LocationScreen/LocationScreen';
 import ChatScreen from './src/Screens/ChatScreen/ChatScreen';
 import RegistrationScreen from './src/Screens/RegistrationScreen/RegistrationScreen';
 import LoginScreen from './src/Screens/LoginScreen/LoginScreen';
+import ChatContacts from './src/Screens/ChatScreen/ChatContacts';
+import {Provider} from 'react-redux';
+import { store } from './src/Redux/Store';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +17,7 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}></Stack.Screen>
@@ -21,8 +25,10 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
         <Stack.Screen name="Location" component={LocationSceen}></Stack.Screen>
         <Stack.Screen name="Chat" component={ChatScreen}></Stack.Screen>
+        <Stack.Screen name="ChatContacts" component={ChatContacts}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 

@@ -1,7 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import { View,FlatList } from 'react-native';
 import {DUMMYCHATS} from '../../DummyData/DUMMYCHATS';
-import ChatBubble from '../../Components/ChatBubbles/ChatBubble';
 import {GiftedChat} from 'react-native-gifted-chat';
 import io from 'socket.io-client';
 import {ChatSocketFactory} from '../../Utils/ChatSocket';

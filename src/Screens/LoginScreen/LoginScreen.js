@@ -1,9 +1,19 @@
 import React from 'react';
 import { View,Text, TextInput,StyleSheet, Button } from 'react-native';
+import {useSelector,useDispatch} from 'react-redux';
+import { LoginAction } from '../../Redux/Login/Actions/LoginAction';
+
+
+
 
 const LoginScreen = (props) => {
 
+    const userName = useSelector(state=> state.loginReducer.userName);
+    const dispatch = useDispatch();
+    var userNameInput = null;
+
     const goToSignUp = () => {
+
 
         // do sign up and navigate to login screen on successful sign up navigate to login Screen
         props.navigation.navigate('Registration');
@@ -11,14 +21,18 @@ const LoginScreen = (props) => {
 
     const goToLoginPage = () => {
         // do successful login and go to Home page. It should start a new route from home page
-        props.navigation.replace('Home');
+        dispatch(LoginAction(userNameInput));
+        props.navigation.replace('Home',{
+            userNameData:userNameInput,
+            tokenData:"abc"
+        });
     }
 
 
     return (<View style={styles.registrationContainer}>
         <Text style={styles.registrationHeader}>Login</Text>
         <View style={styles.inputArea}> 
-            <TextInput style={styles.registrationTextFields} placeholder="Enter your EmailId"></TextInput>
+            <TextInput style={styles.registrationTextFields} placeholder={userName} onChangeText={(text)=>{userNameInput=text;}}></TextInput>
             <TextInput style={styles.registrationTextFields} placeholder="Enter your password" secureTextEntry={true}></TextInput>
         </View>
         <View style={styles.signUpArea}>
@@ -63,7 +77,8 @@ const styles = StyleSheet.create({
         margin:20,
         paddingTop:10,
         borderBottomColor:'#0f0',
-        borderBottomWidth:1
+        borderBottomWidth:1,
+        color:'#fff'
     },
     signUpArea: {
         margin:10,
